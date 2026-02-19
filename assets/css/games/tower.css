@@ -1,0 +1,236 @@
+* {
+    font-family: "Inter", sans-serif !important;
+}
+
+
+/* ======================= GLOBAL ======================= */
+
+.tower-container {
+    width: 100%;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 40px 20px 80px 20px;
+    color: #fff;
+    text-align: center;
+}
+
+
+/* ======================= HEADER ======================= */
+
+.tower-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.tower-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+
+/* ======================= DIFFICULTY SWITCH ======================= */
+
+.tower-difficulty {
+    display: flex;
+    background: #1c1c20;
+    padding: 6px;
+    border-radius: 12px;
+    gap: 8px;
+}
+
+.diff-btn {
+    padding: 8px 18px;
+    background: transparent;
+    color: #9297a3;
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.18s ease;
+}
+
+.diff-btn.active {
+    background: #27272d;
+    color: #fff;
+}
+
+
+/* ======================= GRID ======================= */
+
+.tower-grid {
+    margin: 0 auto;
+    margin-top: 25px;
+    margin-bottom: 40px;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tower-row {
+    display: grid;
+    gap: 12px;
+}
+
+.tower-cell {
+    background: #24252b;
+    padding: 15px 0;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.06);
+    color: #d1d4db;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.18s ease;
+    user-select: none;
+}
+
+.tower-cell:hover {
+    background: #2d2e35;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.tower-cell.selected {
+    background: #4952ff;
+    color: white;
+    border-color: #6870ff;
+    box-shadow: 0 0 12px rgba(90, 100, 255, 0.6);
+}
+
+.tower-cell.failed {
+    background: #992222;
+    color: #fff;
+    border-color: #ff3d3d;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+
+/* ======================= BOTTOM PANEL ======================= */
+
+.tower-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.tower-bet {
+    background: #1c1c20;
+    padding: 12px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.bet-minus,
+.bet-plus {
+    width: 38px;
+    height: 38px;
+    background: #2b2c32;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 20px;
+    transition: 0.15s;
+}
+
+.bet-minus:hover,
+.bet-plus:hover {
+    background: #3a3b42;
+}
+
+.bet-value {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+/* ======================= START BUTTON ======================= */
+
+.start-btn {
+    padding: 14px 30px;
+    background: #2563eb;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 600;
+    color: white;
+    transition: 0.18s ease;
+}
+
+.start-btn:hover {
+    background: #3475ff;
+}
+
+
+.tower-difficulty {
+    transform: translateX(-122px);
+}
+
+.tower-header h2 {
+    transform: translateX(120px);
+}
+
+
+/* === SVG башни перед заголовком === */
+.tower-header h2 svg {
+    width: 24px;
+    height: 24px;
+
+    /* голубой цвет свечения/линий */
+    fill: #4fc3ff;
+
+    /* лёгкая подсветка как у BullDrop */
+    filter: drop-shadow(0 0 6px rgba(79, 195, 255, 0.35));
+}
+
+
+.tower-header h2 svg {
+    transform: translateY(3px); /* опускай вниз (увеличивай число) */
+}
+
+
+.tower-bet {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #1c1c20;
+    padding: 12px 18px;
+    border-radius: 14px;
+}
+
+.tower-bet button {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    border: none;
+    background: #2a2a2f;
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.15s ease;
+}
+
+.tower-bet button:hover {
+    background: #3a3a42;
+}
+
+.bet-input {
+    width: 80px;
+    height: 38px;
+    background: #2a2a2f;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    outline: none;
+}

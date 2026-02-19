@@ -1,0 +1,314 @@
+* {
+    font-family: "Inter", sans-serif !important;
+}
+
+
+/* ===========================================
+   ORdrop CRASH — чистый финальный стиль
+   =========================================== */
+
+:root {
+    --bg: #121212;
+    --bg2: #1d1d20;
+    --bg3: #1d1d20;
+    --border: #262b33;
+
+    --text: #ffffff;
+    --text-soft: #b8c0cc;
+
+    --accent: #4d7cff;
+    --accent-soft: #6da0ff;
+
+    --green: #4dffba;
+    --yellow: #ffd875;
+    --red: #ff6b6b;
+}
+
+/* -------------------------------------------
+   Общий контейнер
+------------------------------------------- */
+
+.crash-container {
+    width: 100%;
+    max-width: 1250px;
+    margin: 60px auto 40px;
+    padding: 0 16px;
+    font-family: Inter, sans-serif;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    min-height: calc(100vh - 120px); /* тянет до низа */
+    padding-bottom: 160px; /* чтобы bottom-menu не перекрывал */
+}
+
+/* -------------------------------------------
+   Заголовок
+------------------------------------------- */
+
+.crash-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* опустить заголовок ниже */
+}
+
+.crash-title .crash-icon {
+    width: 30px;
+    height: 30px;
+    fill: var(--accent);
+}
+
+.crash-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* НОРМАЛЬНАЯ кнопка Как играть */
+.crash-howto {
+    position: static;     /* УДАЛЯЕМ absolute */
+    background: rgba(255,255,255,0.08);
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.2s;
+    margin-left: 60px;   /* вправо */
+    margin-top: 0px;    /* вниз */
+}
+
+.crash-howto:hover {
+    background: rgba(255,255,255,0.14);
+}
+
+/* -------------------------------------------
+   Лейаут: ЛЕВЫЙ (график) + ПРАВЫЙ (ставки)
+------------------------------------------- */
+
+.crash-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 46px;
+    width: 100%;
+}
+
+/* -------------------------------------------
+   ЛЕВЫЙ БЛОК (ГРАФИК)
+------------------------------------------- */
+
+.crash-main {
+    flex: 1;
+    min-width: 760px;
+}
+
+.crash-chart-wrapper {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    width: 100%;
+    position: relative;
+}
+
+/* высота графика */
+#crashCanvas {
+    width: 100%;
+    height: 430px;
+    border-radius: 12px;
+}
+
+/* таймер */
+.crash-timer {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(255,255,255,0.06);
+    padding: 6px 12px;
+    border-radius: 10px;
+    backdrop-filter: blur(6px);
+    font-size: 14px;
+    color: var(--text-soft);
+}
+
+.crash-timer-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+/* история коэффициентов */
+.crash-history {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+}
+
+.crash-h-item {
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    border: 1px solid var(--border);
+}
+
+.crash-h-item.green {
+    background: rgba(77,255,186,0.08);
+    color: var(--green);
+}
+
+.crash-h-item.green.big {
+    background: linear-gradient(90deg, #4dffba, #2ee5a4);
+    color: #000;
+    border: none;
+}
+
+.crash-h-item.yellow {
+    background: rgba(255,216,117,0.08);
+    color: var(--yellow);
+}
+
+.crash-h-item.red {
+    background: rgba(255,107,107,0.08);
+    color: var(--red);
+}
+
+/* -------------------------------------------
+   ПРАВЫЙ БЛОК (СТАВКИ)
+------------------------------------------- */
+
+.crash-right {
+    width: 380px;
+    height: 485px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* инпуты */
+.crash-input-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.crash-label {
+    font-size: 15px;
+    color: var(--text-soft);
+}
+
+.crash-right input {
+    width: 100%;
+    padding: 14px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 15px;
+    color: var(--text);
+    transition: 0.2s;
+}
+
+.crash-right input:focus {
+    border-color: var(--accent);
+}
+
+/* кнопка */
+.crash-play-btn {
+    width: 100%;
+    background: var(--accent);
+    color: #fff;
+    padding: 22px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    margin-top: auto;
+    transition: 0.2s;
+}
+
+.crash-play-btn:hover {
+    background: var(--accent-soft);
+}
+
+
+/* Кнопка "Как играть?" */
+.crash-howto {
+    background: #1d1d20;
+    border: 1px solid #333;
+    padding: 8px 14px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.crash-howto:hover {
+    background: #2a2a30;
+}
+
+/* Блок правил */
+.how-block {
+    background: #1b1b20;
+    border: 1px solid #2e2e33;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 10px;
+    color: #ddd;
+    line-height: 1.5;
+
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+/* Показ блока */
+.how-block.open {
+    max-height: 300px;
+    opacity: 1;
+}
+
+
+.crash-header {
+    position: relative;
+}
+
+.howto-tooltip {
+    position: absolute;
+    top: 48px;
+    right: -10px;
+
+    width: 260px;
+    padding: 14px 18px;
+    border-radius: 14px;
+
+    background: rgba(20,20,20,0.90);
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.45);
+
+    color: #fff;
+    font-size: 15px;
+
+    display: none;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: .2s ease;
+    z-index: 99;
+}
+
+.howto-tooltip.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}

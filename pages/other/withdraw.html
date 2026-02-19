@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вывод средств — ORdrop</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/games/withdraw.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header (как на главной) -->
+    <header class="header">
+        <div class="header-inner">
+            <!-- Логотип -->
+            <div class="header__logo">
+                <img src="https://via.placeholder.com/140x40/3f51ff/ffffff?text=ORdrop" alt="Логотип">
+            </div>
+
+            <!-- Действия (баланс + профиль) -->
+            <div class="header__actions">
+                <!-- Баланс -->
+                <div class="header-balance">
+                    <div class="balance-icon">
+                        <svg class="coin-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <span class="balance-value">5 430</span>
+                    <span class="balance-currency">₽</span>
+                    <button class="balance-add">+</button>
+                </div>
+
+                <!-- Профиль -->
+                <div class="profile">
+                    <div class="profile-btn">
+                        <div class="profile-avatar">
+                            <img src="https://via.placeholder.com/36x36/3f51ff/ffffff?text=U" alt="Аватар">
+                        </div>
+                        <div class="profile-labels">
+                            <div class="profile-name">User_123</div>
+                            <div class="profile-id">ID: 789456</div>
+                        </div>
+                        <div class="profile-arrow">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                                <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Выпадающее меню профиля -->
+                    <div class="profile-menu">
+                        <a href="profile.html" class="pm-item">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10 0a10 10 0 1 0 10 10A10 10 0 0 0 10 0zm0 3a3 3 0 1 1-3 3 3 3 0 0 1 3-3zm0 14.2a7.2 7.2 0 0 1-6-3.22c.03-1.99 4-3.08 6-3.08s5.97 1.09 6 3.08a7.2 7.2 0 0 1-6 3.22z"/>
+                            </svg>
+                            <span>Профиль</span>
+                        </a>
+                        <a href="deposit.html" class="pm-item">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.13046 0.880459L3.88956 4.3744H6.49147L10.828 1.77258L10.7627 1.51152C10.5832 0.793362 9.7464 0.469836 9.13046 0.880459Z"/>
+                                <path d="M15.5979 4.3745L14.8415 2.1052C14.5654 1.27694 13.5829 0.930653 12.8485 1.40276L8.22573 4.3745H15.5979Z"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.5 7.44718C0.5 6.15394 1.54838 5.10556 2.84162 5.10556H15.777C17.0702 5.10556 18.1186 6.15394 18.1186 7.44718V10.9153C18.9072 11.0785 19.5 11.777 19.5 12.614C19.5 13.4509 18.9072 14.1494 18.1186 14.3126V16.9133C18.1186 18.2066 17.0702 19.2549 15.777 19.2549H2.84162C1.54838 19.2549 0.5 18.2066 0.5 16.9133V7.44718ZM17.7657 10.8793H15.1635C14.2055 10.8793 13.4289 11.656 13.4289 12.614C13.4289 13.572 14.2055 14.3486 15.1635 14.3486H17.7654L17.7657 15.7857H15.1637C13.412 15.7857 11.9919 14.3657 11.9919 12.6139C11.9919 10.8622 13.412 9.44211 15.1637 9.44211H17.7657V10.8793ZM5.79309 8.57484C6.34733 8.57484 6.79664 9.02414 6.79664 9.57839V11.1768H8.39458C8.94882 11.1768 9.39813 11.6261 9.39813 12.1803C9.39813 12.7346 8.94882 13.1839 8.39458 13.1839H6.79664V14.7822C6.79664 15.3365 6.34733 15.7858 5.79309 15.7858C5.23884 15.7858 4.78954 15.3365 4.78954 14.7822V13.1839H3.19074C2.6365 13.1839 2.18719 12.7346 2.18719 12.1803C2.18719 11.6261 2.6365 11.1768 3.19074 11.1768H4.78954V9.57839C4.78954 9.02414 5.23884 8.57484 5.79309 8.57484Z"/>
+                            </svg>
+                            <span>Пополнить баланс</span>
+                        </a>
+                        <a href="transactions.html" class="pm-item">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M2 2h16v2H2zm0 4h12v2H2zm0 4h16v2H2zm0 4h12v2H2z"/>
+                            </svg>
+                            <span>История операций</span>
+                        </a>
+                        <a href="settings.html" class="pm-item">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10 15a5 5 0 1 1 5-5 5 5 0 0 1-5 5zm0-8a3 3 0 1 0 3 3 3 3 0 0 0-3-3z"/>
+                                <path d="M17.66 7.85l1.42-1.42-1.41-1.41-1.42 1.42a8 8 0 0 0-1.65-.38l-.35-2.01H12.2l-.35 2.01a8 8 0 0 0-1.65.38L8.78 5.02 7.37 6.43l1.42 1.42a8 8 0 0 0-.38 1.65l-2.01.35V12.2l2.01.35a8 8 0 0 0 .38 1.65l-1.42 1.42 1.41 1.41 1.42-1.42a8 8 0 0 0 1.65.38l.35 2.01h1.9l.35-2.01a8 8 0 0 0 1.65-.38l1.42 1.42 1.41-1.41-1.42-1.42a8 8 0 0 0 .38-1.65l2.01-.35v-1.9l-2.01-.35a8 8 0 0 0-.38-1.65z"/>
+                            </svg>
+                            <span>Настройки</span>
+                        </a>
+                        <div class="pm-item logout">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-4 13a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"/>
+                            </svg>
+                            <span>Выйти</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="withdraw-page">
+        <div class="withdraw-container">
+            <!-- Заголовок -->
+            <div class="withdraw-header">
+                <h1><i class="fas fa-money-bill-wave"></i> Вывод средств</h1>
+                <p class="withdraw-subtitle">Запросите вывод на ваш кошелек</p>
+            </div>
+
+            <!-- Информация о балансе и лимитах -->
+            <div class="withdraw-info">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">Доступно для вывода</div>
+                        <div class="info-amount">4 120 <span class="currency">₽</span></div>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">Минимальная сумма</div>
+                        <div class="info-amount">50 <span class="currency">₽</span></div>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">Срок обработки</div>
+                        <div class="info-text">1-24 часа</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Способы вывода -->
+            <div class="withdraw-methods">
+                <h2>Способы вывода</h2>
+
+                <div class="methods-tabs">
+                    <button class="method-tab active" data-method="card">
+                        <i class="fas fa-credit-card"></i>
+                        <span>Банковская карта</span>
+                    </button>
+                    <button class="method-tab" data-method="yoomoney">
+                        <i class="fas fa-wallet"></i>
+                        <span>ЮMoney</span>
+                    </button>
+                    <button class="method-tab" data-method="qiwi">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>QIWI</span>
+                    </button>
+                    <button class="method-tab" data-method="crypto">
+                        <i class="fab fa-bitcoin"></i>
+                        <span>Криптовалюта</span>
+                    </button>
+                </div>
+
+                <!-- Форма для карты (активная по умолчанию) -->
+                <div class="method-form active" id="cardForm">
+                    <div class="form-group">
+                        <label for="cardNumber">Номер карты</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-credit-card"></i>
+                            <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cardExpiry">Срок действия</label>
+                            <input type="text" id="cardExpiry" placeholder="ММ/ГГ" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label for="cardCVC">CVC/CVV</label>
+                            <input type="text" id="cardCVC" placeholder="000" maxlength="3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardHolder">Имя владельца карты</label>
+                        <input type="text" id="cardHolder" placeholder="IVAN IVANOV">
+                    </div>
+                </div>
+
+                <!-- Форма для ЮMoney -->
+                <div class="method-form" id="yoomoneyForm">
+                    <div class="form-group">
+                        <label for="yoomoneyWallet">Номер кошелька</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-wallet"></i>
+                            <input type="text" id="yoomoneyWallet" placeholder="4100XXXXXXXXXX">
+                        </div>
+                    </div>
+                    <div class="form-notice">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Вывод на кошелек ЮMoney занимает от 5 минут до 2 часов</span>
+                    </div>
+                </div>
+
+                <!-- Форма для QIWI -->
+                <div class="method-form" id="qiwiForm">
+                    <div class="form-group">
+                        <label for="qiwiPhone">Номер телефона</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-phone"></i>
+                            <input type="text" id="qiwiPhone" placeholder="+7 (XXX) XXX-XX-XX">
+                        </div>
+                    </div>
+                    <div class="form-notice">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Номер должен быть привязан к кошельку QIWI</span>
+                    </div>
+                </div>
+
+                <!-- Форма для криптовалюты -->
+                <div class="method-form" id="cryptoForm">
+                    <div class="form-group">
+                        <label for="cryptoMethod">Выберите криптовалюту</label>
+                        <select id="cryptoMethod">
+                            <option value="btc">Bitcoin (BTC)</option>
+                            <option value="eth">Ethereum (ETH)</option>
+                            <option value="usdt">Tether (USDT)</option>
+                            <option value="ltc">Litecoin (LTC)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cryptoAddress">Адрес кошелька</label>
+                        <div class="input-with-icon">
+                            <i class="fab fa-bitcoin"></i>
+                            <input type="text" id="cryptoAddress" placeholder="Введите адрес криптокошелька">
+                        </div>
+                    </div>
+                    <div class="form-notice warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Проверьте адрес перед отправкой. Ошибочные транзакции не могут быть возвращены.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Сумма вывода -->
+            <div class="withdraw-amount">
+                <h2>Сумма вывода</h2>
+
+                <!-- Быстрые суммы -->
+                <div class="quick-amounts">
+                    <button class="quick-amount" data-amount="500">500 ₽</button>
+                    <button class="quick-amount" data-amount="1000">1 000 ₽</button>
+                    <button class="quick-amount active" data-amount="2000">2 000 ₽</button>
+                    <button class="quick-amount" data-amount="5000">5 000 ₽</button>
+                    <button class="quick-amount" id="maxAmount">Макс.</button>
+                </div>
+
+                <!-- Пользовательская сумма -->
+                <div class="custom-amount">
+                    <div class="amount-input-wrapper">
+                        <input type="number" id="amountInput" min="50" max="4120" step="10" value="2000" placeholder="Введите сумму">
+                        <span class="currency-symbol">₽</span>
+                    </div>
+                    <div class="amount-slider">
+                        <input type="range" id="amountSlider" min="50" max="4120" step="10" value="2000">
+                        <div class="slider-labels">
+                            <span>50 ₽</span>
+                            <span>2 060 ₽</span>
+                            <span>4 120 ₽</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Детали вывода -->
+            <div class="withdraw-details">
+                <div class="details-card">
+                    <h3>Детали вывода</h3>
+
+                    <div class="detail-row">
+                        <span>Сумма вывода:</span>
+                        <span class="detail-value" id="withdrawAmount">2 000 ₽</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Комиссия:</span>
+                        <span class="detail-value" id="commissionAmount">20 ₽ (1%)</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Сумма к получению:</span>
+                        <span class="detail-value total-amount" id="netAmount">1 980 ₽</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Способ вывода:</span>
+                        <span class="detail-value" id="methodName">Банковская карта</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Примерное время:</span>
+                        <span class="detail-value" id="processingTime">1-24 часа</span>
+                    </div>
+
+                    <div class="terms-agreement">
+                        <input type="checkbox" id="agreeTerms">
+                        <label for="agreeTerms">
+                            Я согласен с <a href="#">условиями вывода</a> и подтверждаю, что все данные верны
+                        </label>
+                    </div>
+
+                    <button class="withdraw-btn" id="withdrawBtn">
+                        <i class="fas fa-paper-plane"></i> Запросить вывод
+                    </button>
+                </div>
+
+                <!-- Информация о верификации -->
+                <div class="verification-info">
+                    <div class="verification-card">
+                        <div class="verification-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Верификация</h3>
+                        <p>Для вывода свыше 15 000 ₽ требуется верификация аккаунта.</p>
+                        <a href="verification.html" class="verification-link">
+                            <i class="fas fa-id-card"></i> Пройти верификацию
+                        </a>
+                    </div>
+
+                    <!-- История выводов -->
+                    <div class="history-card">
+                        <h3>Последние выводы</h3>
+                        <div class="history-list">
+                            <div class="history-item">
+                                <div class="history-method">Карта •••• 1234</div>
+                                <div class="history-amount">+1 500 ₽</div>
+                                <div class="history-status success">Выполнен</div>
+                                <div class="history-date">Сегодня, 14:30</div>
+                            </div>
+                            <div class="history-item">
+                                <div class="history-method">ЮMoney</div>
+                                <div class="history-amount">+3 000 ₽</div>
+                                <div class="history-status success">Выполнен</div>
+                                <div class="history-date">Вчера, 09:15</div>
+                            </div>
+                            <div class="history-item">
+                                <div class="history-method">QIWI</div>
+                                <div class="history-amount">+500 ₽</div>
+                                <div class="history-status pending">В обработке</div>
+                                <div class="history-date">2 дня назад</div>
+                            </div>
+                        </div>
+                        <a href="transactions.html" class="history-link">Вся история операций →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Поддержка в углу -->
+    <div class="support-float">
+        <button class="support-main-btn" id="supportBtn">
+            <i class="fas fa-headset"></i> Поддержка
+        </button>
+        <button class="support-icon-btn" id="supportIconBtn">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+    </div>
+
+    <!-- Окно поддержки -->
+    <div class="support-window hidden" id="supportWindow">
+        <div class="support-header">
+            <div class="support-title">
+                <span>Поддержка</span>
+                <div class="status-dot"></div>
+            </div>
+            <button class="support-close" id="supportClose">&times;</button>
+        </div>
+        <div class="support-body">
+            <div class="chat-date">Сегодня</div>
+            <div class="msg operator">Здравствуйте! Чем могу помочь?</div>
+            <div class="msg-time">14:30</div>
+        </div>
+        <div class="support-footer">
+            <input type="text" placeholder="Напишите сообщение...">
+            <button><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="footer-logo">ORdrop</div>
+        <div class="footer-links">
+            <a href="#">Пользовательское соглашение</a>
+            <a href="#">Политика конфиденциальности</a>
+            <a href="#">Помощь</a>
+            <a href="#">Контакты</a>
+        </div>
+        <div class="footer-social">
+            <div class="footer-icon"><i class="fab fa-vk"></i></div>
+            <div class="footer-icon"><i class="fab fa-telegram"></i></div>
+            <div class="footer-icon"><i class="fab fa-discord"></i></div>
+            <div class="footer-icon"><i class="fab fa-youtube"></i></div>
+        </div>
+        <div class="footer-copy">© 2023 Все права защищены</div>
+    </footer>
+
+    <script src="../assets/js/pages/withdraw.js"></script>
+</body>
+</html>

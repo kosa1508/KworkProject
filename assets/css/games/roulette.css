@@ -1,0 +1,316 @@
+* {
+    font-family: "Inter", sans-serif !important;
+}
+
+
+/* ===================== ОСНОВА ===================== */
+
+body {
+    background: #121212 !important;
+}
+
+/* Контейнер рулетки */
+.roulette-container {
+    width: 1280px;
+    margin: 50px auto;
+    padding-bottom: 250px; /* <<< вот это добавляет высоту */
+}
+
+/* Заголовок */
+.roulette-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.roulette-title svg {
+    width: 24px;
+    height: 24px;
+
+    /* голубой цвет свечения/линий */
+    fill: #4fc3ff;
+
+    /* лёгкая подсветка как у BullDrop */
+    filter: drop-shadow(0 0 6px rgba(79, 195, 255, 0.35));
+}
+
+.roulette-title h2 {
+    font-size: 26px;
+    color: #fff;
+    font-weight: 700;
+}
+
+
+.roulette-title {
+    transform: translateX(20px);
+}
+
+
+/* ===================== ОСНОВНОЙ БЛОК ===================== */
+
+.roulette-main {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+
+/* ===================== ЛЕВАЯ ПАНЕЛЬ ===================== */
+
+.roulette-left-box {
+    width: 820px;                 /* ШИРЕ */
+    padding: 32px;                /* БОЛЬШЕ ОТСТУПЫ */
+    background: #1b1b1e;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Прогресс */
+.roulette-progress {
+    display: flex;
+    flex-direction: column;
+    align-items: center;          /* ПО ЦЕНТРУ */
+    gap: 18px;
+}
+
+.progress-bar {
+    width: 90%;
+    height: 32px;                 /* ВЫСОТА БОЛЬШЕ */
+    background: #2b2b31;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.progress-bar .filled {
+    height: 100%;
+    background: #22ff88;
+    transition: 0.25s;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: center;
+    gap: 40px;                    /* РАЗНОСИМ */
+    align-items: center;
+    color: white;
+    font-size: 24px;              /* КРУПНЫЙ ТЕКСТ */
+    font-weight: 600;
+}
+
+.timer-box {
+    font-size: 32px;              /* КАК У BULLDROP */
+    font-weight: 700;
+    display: flex;
+    gap: 6px;
+}
+
+/* Информация */
+.roulette-info {
+    color: #cdd0d6;
+    font-size: 16px;
+    line-height: 22px;
+    margin-top: 10px;
+}
+
+
+/* Блок "Ваша ставка" */
+.your-info {
+    color: white;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+
+/* Кнопка */
+.roulette-play-btn {
+    width: 100%;
+    padding: 18px 0;
+    margin-top: 10px;
+    background: #0f62fe;
+    border-radius: 12px;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.roulette-play-btn:hover {
+    filter: brightness(1.2);
+}
+
+
+/* ===================== ПРАВАЯ ПАНЕЛЬ ===================== */
+
+.roulette-right-box {
+    width: 360px;
+    height: 600px;                /* ВЫСОТА УВЕЛИЧЕНА */
+    padding: 25px;
+    background: #1b1b1e;
+    border-radius: 18px;
+}
+
+.bets-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 14px;
+}
+
+.bets-list {
+    height: 520px;
+    overflow-y: auto;
+}
+
+.no-bets {
+    color: #777;
+    text-align: center;
+    margin-top: 200px;
+    font-size: 18px;
+}
+
+
+/* ===================== ЛЕВАЯ БОЛЬШАЯ ПАНЕЛЬ ===================== */
+
+.roulette-left-box {
+    width: 860px;
+    padding: 0 0 30px 0;
+    background: #1b1b1e;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* ===================== ТЁМНЫЙ БЛОК КАК У BULLDROP ===================== */
+
+.roulette-top-dark {
+    background: #151518;
+    padding: 28px;
+    border-radius: 16px 16px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* Верхняя строка */
+.rtop-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.rtop-label {
+    font-size: 18px;
+    color: #bfc2c9;
+}
+
+.rtop-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* Таймер */
+.rtop-timer {
+    display: flex;
+    gap: 4px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* ===================== ШКАЛА ===================== */
+
+.progress-bar {
+    width: 100%;
+    height: 60px; /* БОЛЬШЕ */
+    background: #2b2b31;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.progress-bar .filled {
+    height: 100%;
+    background: linear-gradient(90deg, #22ff88, #0ec36d);
+    transition: 0.25s;
+}
+
+/* ===================== ТЕКСТ НИЖЕ ===================== */
+
+.roulette-info {
+    color: #cdd0d6;
+    font-size: 15px;
+    margin-left: 25px;
+}
+
+.your-info {
+    color: white;
+    font-size: 18px;
+    margin-left: 25px;
+}
+
+/* ===================== КНОПКА ===================== */
+
+.roulette-play-btn {
+    width: calc(100% - 50px);
+    margin: 0 auto;
+    padding: 18px 0;
+    background: #0f62fe;
+    color: #fff;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.roulette-play-btn:hover {
+    filter: brightness(1.2);
+}
+
+
+<div class="roulette-left-box">
+
+    <!-- ВЕРХНИЙ ТЁМНЫЙ БЛОК -->
+    <div class="roulette-top-dark">
+
+        <div class="rtop-row">
+            <div class="rtop-label">Ставок:</div>
+            <div class="rtop-value" id="totalBets">0/50</div>
+
+            <div class="rtop-timer">
+                <span id="min">00</span>
+                <span>:</span>
+                <span id="sec">39</span>
+            </div>
+        </div>
+
+        <!-- ШКАЛА -->
+        <div class="progress-bar">
+            <div class="filled" style="width: 0%;"></div>
+        </div>
+
+    </div>
+
+    <!-- ОБЩАЯ ИНФОРМАЦИЯ -->
+    <div class="roulette-info">
+        Макс. ставка: 2 000<br>
+        Комиссия: 5%<br>
+        Чем больше ставка — тем выше шанс выигрыша.
+    </div>
+
+    <!-- ВАША ИНФОРМАЦИЯ -->
+    <div class="your-info">
+        Ваша ставка: 0<br>
+        Шанс: 0%
+    </div>
+
+    <!-- КНОПКА СНИЗУ -->
+    <button class="roulette-play-btn">Сделать ставку</button>
+
+</div>

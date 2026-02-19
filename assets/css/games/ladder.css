@@ -1,0 +1,173 @@
+/* ===================== ОСНОВА ===================== */
+
+body {
+    background: #121212;
+}
+
+/* Главный контейнер */
+.ladder-container {
+    width: 1250px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+
+
+/* ===================== ВЕРХНИЙ ТИТУЛ ===================== */
+
+.ladder-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ladder-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ladder-icon {
+    width: 26px;
+    height: 26px;
+    fill: #22ff88;    /* неоново-голубой */
+}
+
+.ladder-title h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+}
+
+
+
+/* ===================== ГЛАВНЫЙ FLEX ===================== */
+
+.ladder-main {
+    display: flex;
+    gap: 35px;
+}
+
+
+
+/* ===================== ЛЕВЫЙ БЛОК ===================== */
+
+.ladder-left-box {
+    width: 760px;
+    padding: 25px;
+    background: #1b1b1e;
+    border-radius: 14px;
+    display: flex;
+    gap: 20px;
+}
+
+.ladder-multis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #cdd0d6;
+    font-size: 14px;
+}
+
+/* сетка */
+.ladder-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+/* строка */
+.ladder-row {
+    display: flex;
+    gap: 6px;
+}
+
+/* ячейка */
+.ladder-cell {
+    width: 32px;
+    height: 12px;
+    background: #4e515a;
+    border-radius: 6px;
+}
+
+
+/* ===================== ПРАВЫЙ БЛОК ===================== */
+
+.ladder-right-box {
+    width: 360px;
+    padding: 22px;
+    background: #1b1b1e;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.ladder-right-box label {
+    color: white;
+    font-size: 14px;
+}
+
+.ladder-input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: none;
+    background: #2b2b31;
+    color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+.ladder-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.ladder-step-btn {
+    width: 42px;
+    height: 36px;
+    background: #2b2b31;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #cdd0d6;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.ladder-step-btn.active {
+    background: #0077ff;
+    color: white;
+}
+
+/* Кнопка начать игру */
+.ladder-play-btn {
+    width: 100%;
+    padding: 14px 0;
+    background: #0f62fe;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: .2s;
+    margin-top: 10px;
+}
+
+.ladder-play-btn:hover {
+    filter: brightness(1.15);
+}
+
+
+
+/* ===================== FOOTER FIX ===================== */
+
+main {
+    padding-bottom: 150px;
+}

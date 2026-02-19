@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пополнение баланса</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/games/deposit.css">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header (как на главной) -->
+    <header class="header">
+        <div class="header-inner">
+            <!-- Логотип -->
+            <div class="header__logo">
+                <img src="https://via.placeholder.com/140x40/3f51ff/ffffff?text=LOGO" alt="Логотип">
+            </div>
+
+            <!-- Действия (баланс + профиль) -->
+            <div class="header__actions">
+                <!-- Баланс -->
+                <div class="header-balance">
+                    <div class="balance-icon">
+                        <svg class="coin-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <span class="balance-value">5 430</span>
+                    <span class="balance-currency">₽</span>
+                    <button class="balance-add">+</button>
+                </div>
+
+                <!-- Профиль -->
+                <div class="profile">
+                    <div class="profile-btn">
+                        <div class="profile-avatar">
+                            <img src="https://via.placeholder.com/36x36/3f51ff/ffffff?text=U" alt="Аватар">
+                        </div>
+                        <div class="profile-labels">
+                            <div class="profile-name">User_123</div>
+                            <div class="profile-id">ID: 789456</div>
+                        </div>
+                        <div class="profile-arrow">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                                <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Выпадающее меню профиля -->
+                    <div class="profile-menu">
+                        <a href="profile.html" class="pm-item">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10 0a10 10 0 1 0 10 10A10 10 0 0 0 10 0zm0 3a3 3 0 1 1-3 3 3 3 0 0 1 3-3zm0 14.2a7.2 7.2 0 0 1-6-3.22c.03-1.99 4-3.08 6-3.08s5.97 1.09 6 3.08a7.2 7.2 0 0 1-6 3.22z"/>
+                            </svg>
+                            <span>Профиль</span>
+                        </a>
+                        <a href="withdraw.html" class="pm-item">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M4 9h12v2H4zm9-4h2v2h-2zm0 8h2v2h-2zM3 5h2v2H3zm0 8h2v2H3zm0-4h2v2H3z"/>
+                            </svg>
+                            <span>Вывод средств</span>
+                        </a>
+                        <a href="transactions.html" class="pm-item">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M2 2h16v2H2zm0 4h12v2H2zm0 4h16v2H2zm0 4h12v2H2z"/>
+                            </svg>
+                            <span>История операций</span>
+                        </a>
+                        <a href="settings.html" class="pm-item">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10 15a5 5 0 1 1 5-5 5 5 0 0 1-5 5zm0-8a3 3 0 1 0 3 3 3 3 0 0 0-3-3z"/>
+                                <path d="M17.66 7.85l1.42-1.42-1.41-1.41-1.42 1.42a8 8 0 0 0-1.65-.38l-.35-2.01H12.2l-.35 2.01a8 8 0 0 0-1.65.38L8.78 5.02 7.37 6.43l1.42 1.42a8 8 0 0 0-.38 1.65l-2.01.35V12.2l2.01.35a8 8 0 0 0 .38 1.65l-1.42 1.42 1.41 1.41 1.42-1.42a8 8 0 0 0 1.65.38l.35 2.01h1.9l.35-2.01a8 8 0 0 0 1.65-.38l1.42 1.42 1.41-1.41-1.42-1.42a8 8 0 0 0 .38-1.65l2.01-.35v-1.9l-2.01-.35a8 8 0 0 0-.38-1.65z"/>
+                            </svg>
+                            <span>Настройки</span>
+                        </a>
+                        <div class="pm-item logout">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-4 13a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"/>
+                            </svg>
+                            <span>Выйти</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="deposit-page">
+        <div class="deposit-container">
+            <!-- Заголовок -->
+            <div class="deposit-header">
+                <h1><i class="fas fa-wallet"></i> Пополнение баланса</h1>
+                <p class="deposit-subtitle">Выберите удобный способ пополнения</p>
+            </div>
+
+            <!-- Информация о балансе -->
+            <div class="balance-info">
+                <div class="balance-card">
+                    <div class="balance-card-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="balance-card-content">
+                        <div class="balance-card-label">Текущий баланс</div>
+                        <div class="balance-card-amount">5 430 <span class="currency">₽</span></div>
+                    </div>
+                </div>
+                <div class="balance-card">
+                    <div class="balance-card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="balance-card-content">
+                        <div class="balance-card-label">Всего пополнено</div>
+                        <div class="balance-card-amount">24 850 <span class="currency">₽</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Способы оплаты -->
+            <div class="payment-methods">
+                <h2>Способы оплаты</h2>
+
+                <div class="methods-grid">
+                    <!-- Карта -->
+                    <div class="method-card active" data-method="card">
+                        <div class="method-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="method-name">Банковская карта</div>
+                        <div class="method-desc">Visa, Mastercard, МИР</div>
+                    </div>
+
+                    <!-- ЮMoney -->
+                    <div class="method-card" data-method="yoomoney">
+                        <div class="method-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="method-name">ЮMoney</div>
+                        <div class="method-desc">Кошелек Яндекс.Деньги</div>
+                    </div>
+
+                    <!-- Киви -->
+                    <div class="method-card" data-method="qiwi">
+                        <div class="method-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="method-name">QIWI</div>
+                        <div class="method-desc">Через кошелек QIWI</div>
+                    </div>
+
+                    <!-- Криптовалюта -->
+                    <div class="method-card" data-method="crypto">
+                        <div class="method-icon">
+                            <i class="fab fa-bitcoin"></i>
+                        </div>
+                        <div class="method-name">Криптовалюта</div>
+                        <div class="method-desc">BTC, ETH, USDT</div>
+                    </div>
+
+                    <!-- Мобильный платеж -->
+                    <div class="method-card" data-method="mobile">
+                        <div class="method-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="method-name">Мобильный платеж</div>
+                        <div class="method-desc">С баланса телефона</div>
+                    </div>
+
+                    <!-- Другие способы -->
+                    <div class="method-card" data-method="other">
+                        <div class="method-icon">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </div>
+                        <div class="method-name">Другие способы</div>
+                        <div class="method-desc">WebMoney, PayPal и др.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Форма пополнения -->
+            <div class="deposit-form-section">
+                <div class="deposit-form-container">
+                    <h2>Сумма пополнения</h2>
+
+                    <!-- Быстрые суммы -->
+                    <div class="quick-amounts">
+                        <div class="quick-amount" data-amount="100">100 ₽</div>
+                        <div class="quick-amount" data-amount="500">500 ₽</div>
+                        <div class="quick-amount active" data-amount="1000">1 000 ₽</div>
+                        <div class="quick-amount" data-amount="2000">2 000 ₽</div>
+                        <div class="quick-amount" data-amount="5000">5 000 ₽</div>
+                    </div>
+
+                    <!-- Пользовательская сумма -->
+                    <div class="custom-amount">
+                        <div class="amount-input-wrapper">
+                            <input type="number" id="amountInput" min="50" max="50000" step="50" value="1000" placeholder="Введите сумму">
+                            <span class="currency-symbol">₽</span>
+                        </div>
+                        <div class="amount-slider">
+                            <input type="range" id="amountSlider" min="50" max="50000" step="50" value="1000">
+                            <div class="slider-labels">
+                                <span>50 ₽</span>
+                                <span>25 000 ₽</span>
+                                <span>50 000 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Детали платежа -->
+                    <div class="payment-details">
+                        <div class="detail-row">
+                            <span>Сумма к оплате:</span>
+                            <span class="detail-value" id="payAmount">1 000 ₽</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Комиссия:</span>
+                            <span class="detail-value" id="commissionAmount">0 ₽</span>
+                        </div>
+                        <div class="detail-row total">
+                            <span>Итого к зачислению:</span>
+                            <span class="detail-value total-amount" id="totalAmount">1 000 ₽</span>
+                        </div>
+                    </div>
+
+                    <!-- Кнопка пополнения -->
+                    <button class="deposit-btn" id="depositBtn">
+                        <i class="fas fa-lock"></i> Пополнить баланс
+                    </button>
+
+                    <!-- Безопасность -->
+                    <div class="security-notice">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Все платежи защищены. Ваши данные в безопасности.</span>
+                    </div>
+                </div>
+
+                <!-- Информация о бонусе -->
+                <div class="bonus-info">
+                    <div class="bonus-card">
+                        <div class="bonus-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h3>Бонус за первое пополнение</h3>
+                        <p>При первом пополнении от 500 ₽ получите +10% к сумме!</p>
+                        <div class="bonus-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="progress-text">0/1 пополнений</div>
+                        </div>
+                    </div>
+
+                    <div class="faq">
+                        <h3>Частые вопросы</h3>
+                        <div class="faq-item">
+                            <div class="faq-question">Как быстро зачисляются средства? <i class="fas fa-chevron-down"></i></div>
+                            <div class="faq-answer">Средства зачисляются моментально после подтверждения платежа.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">Есть ли комиссия? <i class="fas fa-chevron-down"></i></div>
+                            <div class="faq-answer">Комиссия зависит от способа оплаты. Для карт РФ комиссия отсутствует.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">Можно ли вернуть средства? <i class="fas fa-chevron-down"></i></div>
+                            <div class="faq-answer">Возврат возможен только в случае технической ошибки.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Поддержка в углу -->
+    <div class="support-float">
+        <button class="support-main-btn" id="supportBtn">
+            <i class="fas fa-headset"></i> Поддержка
+        </button>
+        <button class="support-icon-btn" id="supportIconBtn">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+    </div>
+
+    <!-- Окно поддержки -->
+    <div class="support-window hidden" id="supportWindow">
+        <div class="support-header">
+            <div class="support-title">
+                <span>Поддержка</span>
+                <div class="status-dot"></div>
+            </div>
+            <button class="support-close" id="supportClose">&times;</button>
+        </div>
+        <div class="support-body">
+            <div class="chat-date">Сегодня</div>
+            <div class="msg operator">Здравствуйте! Чем могу помочь?</div>
+            <div class="msg-time">14:30</div>
+        </div>
+        <div class="support-footer">
+            <input type="text" placeholder="Напишите сообщение...">
+            <button><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="footer-logo">LOGO</div>
+        <div class="footer-links">
+            <a href="#">Пользовательское соглашение</a>
+            <a href="#">Политика конфиденциальности</a>
+            <a href="#">Помощь</a>
+            <a href="#">Контакты</a>
+        </div>
+        <div class="footer-social">
+            <div class="footer-icon"><i class="fab fa-vk"></i></div>
+            <div class="footer-icon"><i class="fab fa-telegram"></i></div>
+            <div class="footer-icon"><i class="fab fa-discord"></i></div>
+            <div class="footer-icon"><i class="fab fa-youtube"></i></div>
+        </div>
+        <div class="footer-copy">© 2023 Все права защищены</div>
+    </footer>
+
+    <script src="../assets/js/pages/deposit.js"></script>
+</body>
+</html>

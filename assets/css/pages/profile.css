@@ -1,0 +1,696 @@
+.or-profile {
+    display: flex;
+    gap: 24px;
+    padding: 32px;
+    font-family: Inter, sans-serif;
+    color: #fff;
+}
+
+/* SIDEBAR */
+.or-profile-sidebar {
+    width: 72px;
+    background: #1c1c20;
+    border-radius: 18px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.or-sidebar-btn {
+    height: 52px;
+    border-radius: 14px;
+    background: #2a2a30;
+    border: none;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.2s ease;
+}
+
+.or-sidebar-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: #cfd3da;
+}
+
+.or-sidebar-btn:hover {
+    background: #34343a;
+}
+
+/* PROFILE CARD */
+.or-profile-card {
+    flex: 1;
+    background: #1c1c20;
+    border-radius: 24px;
+    padding: 32px;
+    position: relative;
+}
+
+/* HEADER */
+.or-profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.or-profile-avatar {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #2a2a30;
+
+    /* Ключевые добавки: */
+    overflow: hidden; /* обрезает всё что выходит за круг */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Стиль для изображения внутри */
+.or-profile-avatar .img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* растягивает фото чтобы заполнить круг */
+    object-position: center; /* центрирует фото */
+    display: block;
+}
+
+.or-profile-name {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.or-profile-id {
+    font-size: 14px;
+    color: #9aa0a6;
+    margin-top: 6px;
+}
+
+/* ACTIONS */
+.or-profile-actions {
+    position: absolute;
+    bottom: 32px;
+    right: 32px;
+    display: flex;
+    gap: 16px;
+}
+
+.or-profile-action {
+    height: 46px;
+    padding: 0 18px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+
+    background: #2a2a30;
+    transition: 0.2s ease;
+}
+
+.or-profile-action svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+.or-profile-action.green:hover {
+    background: #22ff88;
+    color: #0e1a13;
+}
+
+.or-profile-action.red:hover {
+    background: #ff4d4d;
+}
+
+
+/* ===== PROFILE NAV BUTTONS ===== */
+
+.or-profile-nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.or-profile-nav-btn {
+    height: 56px;
+    border-radius: 16px;
+    border: none;
+    cursor: pointer;
+
+    background: #2a2a30;
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    transition: 0.2s ease;
+}
+
+.or-profile-nav-btn:hover {
+    background: #34343a;
+    transform: translateY(-2px);
+}
+
+.nav-icon {
+    width: 18px;
+    height: 18px;
+
+    /* заглушка под SVG */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-text {
+    white-space: nowrap;
+}
+
+
+.or-profile-sections {
+    margin-top: 24px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.or-profile-section-btn {
+    height: 72px;
+    border-radius: 18px;
+    border: none;
+    cursor: pointer;
+
+    background: #1c1c20;
+    color: #fff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    transition: 0.2s ease;
+}
+
+.or-profile-section-btn:hover {
+    background: #2a2a30;
+    transform: translateY(-2px);
+}
+
+.section-icon {
+    width: 22px;
+    height: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-text {
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+
+.or-profile {
+    display: flex;
+    flex-direction: column; /* ← ВОТ ОНО */
+    gap: 24px;
+    padding: 32px;
+}
+
+.or-profile-sections {
+    margin-top: 24px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, max-content));
+    gap: 14px;
+
+    justify-content: start; /* ← слева */
+}
+
+.or-profile-section-btn {
+    height: 48px;              /* было 72 */
+    padding: 0 16px;           /* компактнее */
+    border-radius: 14px;
+
+    background: #1c1c20;
+    color: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* текст слева */
+    gap: 10px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    white-space: nowrap;
+}
+
+
+.or-profile-sections {
+    margin-top: 6px; /* было 24px */
+}
+
+
+.or-profile-section-btn {
+    height: 44px;              /* компактнее */
+    padding: 0 16px;
+    border-radius: 14px;
+
+    background: #1c1c20;
+    color: #fff;
+
+    display: flex;
+    align-items: center;       /* ВАЖНО */
+    justify-content: center;   /* центр по горизонтали */
+    gap: 10px;
+
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;            /* ← КЛЮЧЕВОЙ ФИКС */
+
+    white-space: nowrap;
+
+    transition: 0.2s ease;
+}
+
+
+.or-profile-section-btn {
+    height: 44px;
+    padding: 0 16px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+
+    background: #1c1c20;
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;          /* вертикальный центр */
+    justify-content: flex-start;  /* слева */
+    gap: 10px;                    /* расстояние SVG ↔ текст */
+
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+
+    white-space: nowrap;
+    transition: 0.2s ease;
+}
+
+.or-profile-section-btn:hover {
+    background: #2a2a30;
+    transform: translateY(-2px);
+}
+
+
+.section-icon {
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0; /* чтобы SVG не сжимался */
+}
+
+
+.section-icon svg {
+    width: 18px;
+    height: 18px;
+
+    fill: currentColor;   /* SVG красится как текст */
+    stroke: currentColor; /* если иконка stroke-based */
+}
+
+
+.section-text {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+
+/* ===== WRAPPER ===== */
+.or-profile {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+/* ===== CARD ===== */
+.or-profile-card {
+    position: relative;
+    background: #1f2024;
+    border-radius: 20px;
+    padding: 24px;
+}
+
+/* SETTINGS */
+.or-profile-settings {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #aaa;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.or-profile-settings:hover {
+    color: #fff;
+}
+
+
+.or-profile-action {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+/* ===== TABS ===== */
+.or-profile-tabs {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.or-profile-tab {
+    padding: 12px 18px;
+    border-radius: 14px;
+    background: #24252a;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.or-profile-tab.active {
+    background: #2f3036;
+    color: #fff;
+}
+
+/* ===== CONTENT ===== */
+.or-profile-content {
+    margin-top: 20px;
+}
+
+.or-profile-section {
+    display: none;
+}
+
+.or-profile-section.active {
+    display: block;
+}
+
+/* EMPTY STATE */
+.or-empty {
+    padding: 60px 20px;
+    text-align: center;
+    color: #777;
+    background: #1f2024;
+    border-radius: 18px;
+}
+
+
+/* ===============================
+   PROFILE WRAPPER
+================================ */
+.or-profile {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding-bottom: 80px;
+    color: #fff;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ===============================
+   PROFILE CARD
+================================ */
+.or-profile-card {
+    background: #1f2024;
+    border-radius: 20px;
+    padding: 24px;
+}
+
+/* HEADER */
+.or-profile-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+/* INFO */
+.or-profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.or-profile-name {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.or-profile-id {
+    font-size: 13px;
+    color: #9a9a9a;
+}
+
+/* ===============================
+   ACTION BUTTONS
+================================ */
+.or-profile-actions {
+    display: flex;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.or-profile-action {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 12px 22px;
+    border-radius: 14px;
+    border: none;
+
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+/* ===============================
+   TABS — FULL WIDTH (50 / 50)
+================================ */
+.or-profile-tabs-wide {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 26px;
+
+    background: #1f2024;
+    border-radius: 18px 18px 0 0;
+    overflow: hidden;
+}
+
+.or-profile-tab-wide {
+    padding: 18px 0;
+
+    background: transparent;
+    border: none;
+
+    font-size: 16px;
+    font-weight: 500;
+    color: #9a9a9a;
+
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease;
+}
+
+.or-profile-tab-wide:hover {
+    background: rgba(255,255,255,0.04);
+}
+
+.or-profile-tab-wide.active {
+    background: #2a2b30;
+    color: #fff;
+}
+
+/* ===============================
+   CONTENT (ATTACHED TO TABS)
+================================ */
+.or-profile-content-wide {
+    background: #1f2024;
+    border-radius: 0 0 18px 18px;
+    padding: 28px;
+}
+
+/* SECTIONS */
+.or-profile-section {
+    display: none;
+}
+
+.or-profile-section.active {
+    display: block;
+}
+
+/* ===============================
+   EMPTY STATE
+================================ */
+.or-empty {
+    padding: 90px 20px;
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+}
+
+/* ===============================
+   FLOAT SETTINGS BUTTON
+================================ */
+.or-settings-float {
+    position: fixed;
+    top: 140px;
+    right: 40px;
+
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+
+    background: #2a2b30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: grab;
+    z-index: 999;
+
+}
+
+.or-settings-float:active {
+    cursor: grabbing;
+}
+
+.or-settings-float svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 1.6;
+}
+
+/* ===============================
+   RESPONSIVE (OPTIONAL)
+================================ */
+@media (max-width: 768px) {
+
+    .or-profile-actions {
+        flex-direction: column;
+    }
+
+    .or-settings-float {
+        right: 20px;
+        top: auto;
+        bottom: 20px;
+    }
+
+}
+
+
+/* =========================================
+   FIXES: TABS (ИНВЕНТАРЬ / ИСТОРИЯ ВЫВОДОВ)
+========================================= */
+
+/* 1. УБИРАЕМ СИЯНИЕ / HOVER-ЭФФЕКТ */
+.or-profile-tab-wide:hover {
+    background: inherit;
+    box-shadow: none;
+    filter: none;
+}
+
+/* 2. БАЗОВЫЙ ВИД ТАБОВ */
+.or-profile-tab-wide {
+    background: #26272b;
+    color: #b5b5b5;
+    border: none;
+    transition: none; /* убираем лишнюю анимацию */
+}
+
+/* 3. АКТИВНЫЙ ТАБ — СЕРЫЙ, НЕ ЯРКИЙ */
+.or-profile-tab-wide.active {
+    background: #2f3034;
+    color: #ffffff;
+}
+
+/* 4. УБИРАЕМ ЗАЗОР МЕЖДУ ТАБАМИ И КОНТЕНТОМ */
+.or-profile-tabs-wide {
+    margin-top: 20px;
+    margin-bottom: 0;
+    border-radius: 18px 18px 0 0;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.or-profile-content-wide {
+    margin-top: 0;
+    padding-top: 28px;
+    border-radius: 0 0 18px 18px;
+}
+
+/* 5. ЧТОБЫ ТАБЫ И КОНТЕНТ СМОТРЕЛИСЬ КАК ОДИН БЛОК */
+.or-profile-tabs-wide,
+.or-profile-content-wide {
+    background: #1f2024;
+}
+
+/* =========================================
+   (ОПЦИОНАЛЬНО) УБРАТЬ ЛЮБОЙ GLOW ВООБЩЕ
+========================================= */
+.or-profile-tab-wide,
+.or-profile-tab-wide * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+
+.or-profile-content-wide {
+    min-height: 480px; /* можешь поставить 450–600 */
+}
+
+
+.or-profile {
+    margin-bottom: 80px; /* 60–120 по вкусу */
+}

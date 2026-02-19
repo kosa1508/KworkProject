@@ -1,0 +1,196 @@
+/* ================= CASES PAGE ================= */
+.cases-page {
+    padding: 40px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* АДАПТИВНАЯ СЕТКА КЕЙСОВ */
+.cases-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
+    gap: 30px;
+    width: 100%;
+}
+
+/* Карточка кейса */
+.case-card {
+    background: #1a1a1a;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+    height: 400px;
+}
+
+.case-card:hover {
+    border: 2px solid #3f51ff;
+    transform: translateY(-4px);
+    box-shadow: 0 0 12px rgba(63, 81, 255, 0.35);
+}
+
+.case-image {
+    width: 100%;
+    height: 240px;
+    background: #2a2a2a;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 18px;
+}
+
+.case-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.case-price {
+    font-size: 22px;
+    font-weight: 700;
+    color: #3f51ff;
+    background: rgba(63, 81, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 10px;
+}
+
+/* Заголовок категории */
+.cases-category {
+    margin-bottom: 50px;
+}
+
+.cases-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+    padding-left: 10px;
+}
+
+.cases-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.cases-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+/* АДАПТИВНОСТЬ - перенос как у квадратов */
+@media (max-width: 1200px) {
+    .cases-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .cases-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cases-page {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .cases-container {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .cases-page {
+        padding: 20px;
+    }
+
+    .cases-header h2 {
+        font-size: 20px;
+    }
+}
+
+/* Стили для заголовка "Все кейсы" */
+.cases-title-bar {
+    width: 100%;
+    padding: 0 40px;
+    margin: 20px auto 14px auto;
+    display: flex;
+    align-items: center;
+    max-width: 1500px;
+}
+
+.cases-title-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cases-title-icon {
+    width: 38px;
+    height: 38px;
+    display: block;
+}
+
+.cases-title-left span {
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* ================= CASE CARD IMAGES ================= */
+.case-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.case-image {
+    width: 100%;
+    height: 200px; /* Фиксированная высота для всех изображений */
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    background: #1a1a1a; /* Фон на случай если изображение не загрузится */
+}
+
+.case-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Изображение заполняет контейнер без искажений */
+    object-position: center;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.case-card:hover .case-image img {
+    transform: scale(1.05); /* Легкое увеличение при наведении */
+}
+
+/* Стили для текста */
+.case-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.case-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #22c55e;
+}
