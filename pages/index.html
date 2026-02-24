@@ -949,30 +949,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Страница загружена, инициализация обработчиков...');
 
-            // Получаем все карточки кейсов
-            const caseCards = document.querySelectorAll('.case-card');
-            console.log('Найдено карточек кейсов:', caseCards.length);
-
-            // Добавляем обработчик клика на каждую карточку
-            caseCards.forEach(card => {
-                card.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    // Получаем данные из data-атрибутов
-                    const caseId = this.dataset.caseId;
-                    const caseName = this.dataset.caseName;
-                    const casePrice = this.dataset.casePrice;
-
-                    console.log('Клик по кейсу:', { caseId, caseName, casePrice });
-
-                    if (caseId) {
-                        openCaseModal(caseId, caseName, casePrice);
-                    } else {
-                        console.error('У карточки нет data-case-id');
-                    }
-                });
-            });
+            // Обработка кликов по кейсам отключена
 
             // Загружаем баланс пользователя
             loadUserBalance();

@@ -1,101 +1,72 @@
+from datetime import datetime
+from typing import List, Optional
 
-
-from src.api.dependencies import PaginationDep
-from src.exceptions import check_date_to_after_date_from, ObjectNotFoundException, ItemNotFoundException
-
-from src.schemas.items import Item, ItemAddRequest, ItemAdd, ItemPatchRequest, ItemPatch
-
+from src.exceptions import ObjectNotFoundException, ItemNotFoundException
+from src.schemas.items import ItemCreate, ItemUpdate, Item
 from src.services.base import BaseService
-from src.services.cases import CaseService
-
 
 
 class ItemService(BaseService):
-    async def get_item(self, item_id: int, case_id: int):
-        return await self.db.items.get_one(case_id=case_id, id=item_id)
 
-    async def get_all_items(
-            self,
-            case_id: int | None = None,
-    ):
-        return await self.db.items.get_all(
-            case_id=case_id,
-        )
+    async def get_case_items(self, case_id: int, only_active: bool = True) -> List[Item]:
+        """Получить все предметы кейса"""
+        filters = {'case_id': case_id}
+        if only_active:
+            filters['is_active'] = True
 
-    async def create_item(
-            self,
-            case_id: int,
-            item_data: ItemAddRequest,
-    ):
-        await CaseService(self.db).get_case_with_check(case_id)
+        return await self.db.items.get_all(order_by='-rarity', **filters)
 
-        _item_data = ItemAdd(case_id=case_id, **item_data.model_dump())
-        item: Item = await self.db.items.add(_item_data)
-        await self.db.commit()
-        return item
+    async def get_case_items_with_weights(self, case_id: int) -> List[Item]:
+        """Получить предметы кейса с весами для рандома"""
+        items = await self.get_case_items(case_id)
 
-    async def edit_item(
-        self,
-        case_id: int,
-        item_id: int,
-        item_data: ItemAddRequest,
-    ):
-        await CaseService(self.db).get_case_with_check(case_id)
-        await self.get_item_with_check(item_id)
-        _item_data = ItemAdd(case_id=case_id, **item_data.model_dump())
-        await self.db.items.edit(_item_data, id=item_id)
-        await self.db.commit()
+        # Добавляем вес каждому предмету
+        for item in items:
+            # Вес может быть настроен через админку
+            # По умолчанию используем rarity^2 * 10
+            if not hasattr(item, 'weight') or not item.weight:
+                item.weight = (item.rarity ** 2) * 10
 
+        return items
 
+    async def increment_open_count(self, item_id: int):
+        """Увеличить счетчик открытий предмета"""
+        item = await self.get_item(item_id)
 
-    async def partially_edit_item(
-        self,
-        case_id: int,
-        item_id: int,
-        item_data: ItemPatchRequest,
-    ):
-        await CaseService(self.db).get_case_with_check(case_id)
-        await self.get_item_with_check(item_id)
-        _item_data_dict = item_data.model_dump(exclude_unset=True)
-        _item_data = ItemPatch(case_id=case_id, **_item_data_dict)
-        await self.db.items.edit(_item_data, exclude_unset=True, id=item_id, case_id=case_id)
+        update_data = {
+            'total_opened': item.total_opened + 1,
+            'last_opened_at': datetime.utcnow()
+        }
+
+        await self.db.items.edit(update_data, id=item_id)
         await self.db.commit()
 
-    async def delete_item(
-            self,
-            case_id: int,
-            item_id: int,
-    ):
-        await CaseService(self.db).get_case_with_check(case_id)
-        await self.get_item_with_check(item_id)
-        await self.db.items.delete(id=item_id, case_id=case_id)
-        await self.db.commit()
-
-    async def get_item_with_check(self, item_id: int) -> Item:
+    async def get_item(self, item_id: int) -> Item:
+        """Получить предмет по ID"""
         try:
             return await self.db.items.get_one(id=item_id)
         except ObjectNotFoundException:
             raise ItemNotFoundException
 
-    async def get_case_items_with_weights(self, case_id: int):
-        """Получает предметы кейса с рассчитанными весами для рандома"""
-        items = await self.db.items.get_all(case_id=case_id)
+    async def create_item(self, case_id: int, data: ItemCreate) -> Item:
+        """Создать предмет"""
+        item_data = data.model_dump()
+        item_data['case_id'] = case_id
 
-        # Добавляем вес каждому предмету на основе редкости
-        for item in items:
-            # Вес = редкость^2 * 100 (для более тонкой настройки)
-            item.weight = item.rarity ** 2 * 100
+        item = await self.db.items.add(item_data)
+        await self.db.commit()
+        return item
 
-        return items
+    async def update_item(self, item_id: int, data: ItemUpdate) -> Item:
+        """Обновить предмет"""
+        await self.get_item(item_id)
 
+        update_data = data.model_dump(exclude_unset=True)
+        await self.db.items.edit(update_data, id=item_id)
+        await self.db.commit()
 
+        return await self.get_item(item_id)
 
-
-
-
-
-
-
-
-
-
+    async def delete_item(self, item_id: int):
+        """Удалить предмет (мягкое удаление)"""
+        await self.update_item(item_id, ItemUpdate(is_active=False))

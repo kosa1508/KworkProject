@@ -1,30 +1,34 @@
 import hashlib
 import hmac
 import secrets
-import random
-from typing import Tuple, List, Dict, Any
+from typing import List, Dict, Any, Tuple
 
 
 class CryptoRNGService:
     """
-    Криптографически безопасный генератор случайных чисел для открытия кейсов
-    Основан на HMAC-SHA256 с доказуемо честной системой
+    Криптографически безопасный генератор случайных чисел
+    Использует HMAC-SHA256 для доказуемо честной системы
     """
 
     @staticmethod
-    def generate_server_seed() -> str:
-        """Генерирует криптостойкий серверный сид (64 символа hex)"""
-        return secrets.token_hex(32)
+    def generate_server_seed() -> Tuple[str, str]:
+        """
+        Генерирует серверный сид и его хеш
+        Возвращает: (seed, seed_hash)
+        """
+        seed = secrets.token_hex(32)
+        seed_hash = hashlib.sha256(seed.encode()).hexdigest()
+        return seed, seed_hash
 
     @staticmethod
     def generate_client_seed() -> str:
-        """Генерирует криптостойкий клиентский сид"""
+        """Генерирует клиентский сид"""
         return secrets.token_hex(16)
 
     @staticmethod
-    def hash_server_seed(server_seed: str) -> str:
-        """Хэширует серверный сид для публикации до открытия"""
-        return hashlib.sha256(server_seed.encode()).hexdigest()
+    def generate_idempotency_key() -> str:
+        """Генерирует ключ идемпотентности"""
+        return secrets.token_hex(32)
 
     @staticmethod
     def generate_roll(
@@ -34,7 +38,7 @@ class CryptoRNGService:
             max_value: int = 1_000_000
     ) -> int:
         """
-        Генерирует число от 0 до max_value-1 (по умолчанию 0-999999)
+        Генерирует число от 0 до max_value-1
         Использует HMAC-SHA256 для криптостойкости
         """
         message = f"{client_seed}:{nonce}".encode()
@@ -45,7 +49,7 @@ class CryptoRNGService:
         )
         hex_digest = hmac_obj.hexdigest()
 
-        # Берем первые 8 символов hex (32 бита) и конвертируем в int
+        # Берем первые 8 символов hex (32 бита)
         roll_int = int(hex_digest[:8], 16)
 
         return roll_int % max_value
@@ -57,41 +61,47 @@ class CryptoRNGService:
             max_roll: int = 1_000_000
     ) -> Dict[str, Any]:
         """
-        Выбирает предмет на основе roll с учетом редкости
-        rarity: 1 (очень редкий) - 10 (обычный)
+        Выбирает предмет на основе roll с учетом весов
         """
         if not items:
             return None
 
-        # Сортируем предметы по редкости (от редких к обычным)
-        sorted_items = sorted(items, key=lambda x: x['rarity'], reverse=True)
+        # Сортируем по весу (для последовательности)
+        sorted_items = sorted(items, key=lambda x: x['weight'], reverse=True)
 
-        # Распределяем шансы на основе rarity
-        # rarity 10 = 50% шанс, rarity 5 = 25% шанс, rarity 1 = 2% шанс и т.д.
-        total_weight = 0
-        weighted_items = []
-
-        for item in sorted_items:
-            # Вес = rarity^2 (можно настроить)
-            weight = item['rarity'] ** 2
-            weighted_items.append({
-                'item': item,
-                'weight': weight,
-                'min_range': total_weight,
-                'max_range': total_weight + weight
-            })
-            total_weight += weight
+        # Вычисляем общий вес
+        total_weight = sum(item['weight'] for item in sorted_items)
 
         # Нормализуем roll к диапазону весов
         normalized_roll = (roll / max_roll) * total_weight
 
         # Выбираем предмет
-        for weighted_item in weighted_items:
-            if weighted_item['min_range'] <= normalized_roll < weighted_item['max_range']:
-                return weighted_item['item']
+        cumulative = 0
+        for item in sorted_items:
+            cumulative += item['weight']
+            if normalized_roll < cumulative:
+                return item
 
-        # Если ничего не выбрали (погрешность), возвращаем последний (самый частый)
-        return weighted_items[-1]['item'] if weighted_items else None
+        # На случай погрешности - возвращаем последний
+        return sorted_items[-1] if sorted_items else None
+
+    @staticmethod
+    def calculate_item_chances(items: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """
+        Рассчитывает шансы выпадения для каждого предмета в процентах
+        """
+        if not items:
+            return []
+
+        total_weight = sum(item['weight'] for item in items)
+
+        result = []
+        for item in items:
+            item_copy = item.copy()
+            item_copy['chance_percent'] = (item['weight'] / total_weight) * 100
+            result.append(item_copy)
+
+        return result
 
     @staticmethod
     def verify_fairness(
@@ -102,7 +112,6 @@ class CryptoRNGService:
     ) -> bool:
         """
         Проверяет честность открытия
-        Клиент может проверить, что сервер не мухлевал
         """
         calculated_roll = CryptoRNGService.generate_roll(
             server_seed, client_seed, nonce

@@ -1,10 +1,10 @@
 import secrets
 import hmac
 import hashlib
-from typing import Optional, Set
+from typing import Optional, Set, Callable
+from functools import wraps
 from fastapi import Request, HTTPException
-from fastapi.responses import Response
-from fastapi.responses import JSONResponse
+from fastapi.responses import Response, JSONResponse
 
 from src.config import settings
 
@@ -168,6 +168,74 @@ class CSRFProtection:
 csrf_protection = CSRFProtection()
 
 
+# ============= ДОБАВЛЯЕМ ДЕКОРАТОР CSRF_PROTECT =============
+def csrf_protect(func: Callable):
+    """
+    Декоратор для защиты эндпоинтов от CSRF атак
+    Использование:
+    @router.post("/endpoint")
+    @csrf_protect
+    async def my_endpoint(request: Request):
+        ...
+    """
+
+    @wraps(func)
+    async def wrapper(*args, **kwargs):
+        # Находим request в аргументах
+        request = None
+        for arg in args:
+            if isinstance(arg, Request):
+                request = arg
+                break
+
+        if not request and 'request' in kwargs:
+            request = kwargs['request']
+
+        if request:
+            # Валидируем CSRF токен
+            csrf_protection.validate_csrf_token(request)
+
+        # Вызываем оригинальную функцию
+        return await func(*args, **kwargs)
+
+    return wrapper
+
+
+# Альтернативная версия декоратора с возможностью отключения
+def csrf_protect_optional(require_csrf: bool = True):
+    """
+    Декоратор с опцией отключения CSRF защиты
+    Использование:
+    @router.post("/endpoint")
+    @csrf_protect_optional(require_csrf=True)
+    async def my_endpoint(request: Request):
+        ...
+    """
+
+    def decorator(func: Callable):
+        @wraps(func)
+        async def wrapper(*args, **kwargs):
+            if require_csrf:
+                # Находим request в аргументах
+                request = None
+                for arg in args:
+                    if isinstance(arg, Request):
+                        request = arg
+                        break
+
+                if not request and 'request' in kwargs:
+                    request = kwargs['request']
+
+                if request:
+                    csrf_protection.validate_csrf_token(request)
+
+            return await func(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
+
+
 # Middleware для CSRF защиты
 async def csrf_middleware(request: Request, call_next):
     """Middleware для автоматической проверки CSRF"""
@@ -178,7 +246,6 @@ async def csrf_middleware(request: Request, call_next):
             csrf_protection.validate_csrf_token(request)
         except HTTPException as e:
             # Возвращаем красивое сообщение об ошибке
-
             return JSONResponse(
                 status_code=e.status_code,
                 content=e.detail if isinstance(e.detail, dict) else {"detail": e.detail}
@@ -186,3 +253,15 @@ async def csrf_middleware(request: Request, call_next):
 
     response = await call_next(request)
     return response
+
+
+# Вспомогательная функция для получения CSRF токена
+def get_csrf_token(request: Request) -> Optional[str]:
+    """Получает текущий CSRF токен из запроса"""
+    return csrf_protection.get_csrf_token_from_cookie(request)
+
+
+# Функция для установки CSRF токена в ответ
+def set_csrf_token(response: Response) -> str:
+    """Устанавливает CSRF токен в ответ"""
+    return csrf_protection.set_csrf_token(response)

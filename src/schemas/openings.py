@@ -1,30 +1,47 @@
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Optional, List
 from datetime import datetime
-from typing import Optional
+from uuid import UUID
+
+from src.schemas.items import ItemWithChance
 
 
-class CaseOpeningRequest(BaseModel):
+class OpeningRequest(BaseModel):
     case_id: int
+    idempotency_key: str = Field(..., min_length=32, max_length=64)
 
 
-class CaseOpeningResponse(BaseModel):
+class OpeningResponse(BaseModel):
     id: int
-    user_id: int
     case_id: int
     item_id: int
     item_name: str
     item_rarity: int
     item_price: int
-    server_seed: str
+    roll: int
+    server_seed_hash: str
     client_seed: str
     nonce: int
-    roll: int
     created_at: datetime
 
     model_config = ConfigDict(from_attributes=True)
 
 
-class OpeningHistoryResponse(BaseModel):
+class OpeningVerifyRequest(BaseModel):
+    opening_id: int
+    server_seed: str
+    client_seed: str
+    nonce: int
+    roll: int
+
+
+class OpeningVerifyResponse(BaseModel):
+    is_valid: bool
+    expected_roll: int
+    expected_item: Optional[dict] = None
+
+
+class OpeningHistoryItem(BaseModel):
     id: int
     case_name: str
     item_name: str
@@ -35,15 +52,9 @@ class OpeningHistoryResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
-class VerifyOpeningRequest(BaseModel):
-    opening_id: int
-    server_seed: str
-    client_seed: str
-    nonce: int
-    roll: int
-
-
-class VerifyOpeningResponse(BaseModel):
-    is_valid: bool
-    expected_roll: int
-    expected_item: Optional[dict] = None
+class CaseContents(BaseModel):
+    case_id: int
+    case_name: str
+    items: List[ItemWithChance]
+    total_value: int
+    avg_price: float

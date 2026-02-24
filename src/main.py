@@ -16,6 +16,8 @@ from src.api.cases import router as router_cases
 from src.api.auth import router as router_auth
 from src.api.items import router as router_items
 from src.api.payments import router as router_payments
+from src.api.openings import router as router_openings
+from src.api.inventory import router as router_inventory
 from src.config import settings
 from src.core.csrf import csrf_middleware, csrf_protection
 
@@ -72,6 +74,8 @@ app.include_router(router_cases)
 app.include_router(router_auth)
 app.include_router(router_items)
 app.include_router(router_payments)
+app.include_router(router_openings)
+app.include_router(router_inventory)
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=8001, reload=True)

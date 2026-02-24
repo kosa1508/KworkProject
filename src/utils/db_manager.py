@@ -1,8 +1,10 @@
 """from src.repositories.bookings import BookingsRepository"""
 from src.repositories.cases import CasesRepository
+from src.repositories.inventory import InventoryRepository
+from src.repositories.openings import CaseOpeningsRepository
 from src.repositories.users import UsersRepository
 from src.repositories.items import ItemsRepository
-from src.repositories.payments import PaymentsRepository
+"""from src.repositories.payments import PaymentsRepository"""
 
 """from src.repositories.facilities import FacilitiesRepository, RoomsFacilitiesRepository
 from src.repositories.hotels import HotelsRepository
@@ -18,16 +20,11 @@ class DBManager:
     async def __aenter__(self):
         self.session = self.session_factory()
 
-        """self.hotels = HotelsRepository(self.session)
-        self.rooms = RoomsRepository(self.session)
         self.users = UsersRepository(self.session)
-        self.bookings = BookingsRepository(self.session)
-        self.facilities = FacilitiesRepository(self.session)
-        self.rooms_facilities = RoomsFacilitiesRepository(self.session)"""
-        self.items = ItemsRepository(self.session)
         self.cases = CasesRepository(self.session)
-        self.users = UsersRepository(self.session)
-        self.payments = PaymentsRepository(self.session)
+        self.items = ItemsRepository(self.session)
+        self.openings = CaseOpeningsRepository(self.session)
+        self.inventory = InventoryRepository(self.session)
 
 
         return self

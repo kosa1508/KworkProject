@@ -1,4 +1,4 @@
-from datetime import date
+"""from datetime import date
 from fastapi import HTTPException
 
 from sqlalchemy import select
@@ -24,3 +24,4 @@ class PaymentsRepository(BaseRepository):
         case = await self.sess.payments.add(data)
         await self.db.commit()
         return case
+"""

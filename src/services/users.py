@@ -1,7 +1,14 @@
-from src.exceptions import ObjectNotFoundException, UserNotFoundException, InsufficientBalanceException
-from src.services.base import BaseService
-from src.schemas.users import User
 from datetime import datetime
+from typing import Optional, List
+
+from src.exceptions import (
+    ObjectNotFoundException,
+    UserNotFoundException,
+    InsufficientBalanceException
+)
+from src.schemas.users import User
+from src.schemas.inventory import InventoryItem
+from src.services.base import BaseService
 
 
 class UsersService(BaseService):
@@ -9,23 +16,14 @@ class UsersService(BaseService):
     Сервис для работы с пользователями
     """
 
-    async def get_one_or_none_user(self, user_id: int) -> User | None:
-        """
-        Получает пользователя по ID
-        """
-        try:
-            return await self.db.users.get_one(id=user_id)
-        except ObjectNotFoundException:
-            return None
-
     async def get_user_or_raise(self, user_id: int) -> User:
         """
         Получает пользователя по ID или выбрасывает исключение
         """
-        user = await self.get_one_or_none_user(user_id)
-        if not user:
+        try:
+            return await self.db.users.get_one(id=user_id)
+        except ObjectNotFoundException:
             raise UserNotFoundException
-        return user
 
     async def decrease_balance(self, user_id: int, amount: int):
         """
@@ -40,6 +38,8 @@ class UsersService(BaseService):
         await self.db.users.edit({'balance': new_balance}, id=user_id)
         await self.db.commit()
 
+        return new_balance
+
     async def increase_balance(self, user_id: int, amount: int):
         """
         Увеличивает баланс пользователя
@@ -50,17 +50,36 @@ class UsersService(BaseService):
         await self.db.users.edit({'balance': new_balance}, id=user_id)
         await self.db.commit()
 
-    async def add_item_to_inventory(self, user_id: int, item_id: int, item_name: str, item_price: int):
-        """
-        Добавляет предмет в инвентарь пользователя
-        Упрощенная версия - просто логируем открытие
-        """
-        # В вашем случае предметы не сохраняются в инвентарь,
-        # только информация об открытии кейса
-        pass
+        return new_balance
 
-    async def get_user_by_email(self, email: str):
+    async def get_user_inventory(
+            self,
+            user_id: int,
+            limit: int = 100,
+            offset: int = 0
+    ) -> List[InventoryItem]:
         """
-        Получает пользователя по email
+        Получает инвентарь пользователя
         """
-        return await self.db.users.get_user_by_email(email)
+        return await self.db.inventory.get_user_inventory(user_id, limit, offset)
+
+    async def sell_item(self, user_id: int, inventory_id: int, price: int) -> InventoryItem:
+        """
+        Продает предмет из инвентаря
+        """
+        # Получаем предмет
+        inventory = await self.db.inventory.get_one(id=inventory_id, user_id=user_id)
+
+        if not inventory:
+            raise ObjectNotFoundException("Предмет не найден")
+
+        if inventory.is_sold:
+            raise ValueError("Предмет уже продан")
+
+        # Помечаем как проданный
+        await self.db.inventory.mark_as_sold(inventory_id, price)
+
+        # Начисляем деньги
+        await self.increase_balance(user_id, price)
+
+        return await self.db.inventory.get_one(id=inventory_id)
